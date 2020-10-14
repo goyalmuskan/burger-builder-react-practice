@@ -8,12 +8,13 @@ const layout = (props) => {
         'padding': '10px'
     }
 
-    return (<Aux>
-        <div style={style}> Toolbar, SideDrawer, BackDrop </div>
-        <main className={classes.content}>
-            {props.children}
-        </main>
-    </Aux>)
+    return (
+        <Aux>
+            <div style={style}> Toolbar, SideDrawer, BackDrop </div>
+            <main className={classes.content}>
+                {props.children}
+            </main>
+        </Aux>)
 };
 
 export default layout;

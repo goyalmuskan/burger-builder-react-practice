@@ -11,6 +11,7 @@ import BuildControl from './BuildControl/BuildControl';
 
 const buildControls = (props) => (
     <div className={classes.BuildControls}>
+        <p> Current Price: <strong>Rs. {props.price}</strong> </p>
         {Object.keys(props.ingredients).map(control => (
             <BuildControl 
                 added={() => props.ingredientAdded(control)} 
@@ -19,6 +20,7 @@ const buildControls = (props) => (
                 key={control} 
                 label={control.charAt(0).toUpperCase() + control.slice(1)}></BuildControl>
         ))}
+        <button className={classes.OrderButton} disabled={!props.placeOrderButton}> PLACE ORDER </button>
     </div>
 )
 

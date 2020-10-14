@@ -27,7 +27,21 @@ class BurgerBuilder extends Component {
             cheese: 0
             // lettuce : 0
         },
-        totalPrice: 10
+        totalPrice: 10,
+        placeOrder: false
+    }
+
+    updatePlaceOrderState (ingredients) {
+        // const ingredients = {
+        //     ...this.state.ingredients
+        // };
+        const sum = Object.keys(ingredients).map( item => {
+            return ingredients[item];
+        })
+        .reduce((sum, element) => {
+            return sum + element;
+        }, 0);
+        this.setState({placeOrder: sum > 0});
     }
 
     addIngredientHandler = (type) => {
@@ -43,6 +57,7 @@ class BurgerBuilder extends Component {
             totalPrice: newPrice,
             ingredients: updatedIngredients
         });
+        this.updatePlaceOrderState(updatedIngredients);
     }
 
     removeIngredientHandler = (type) => {
@@ -59,6 +74,7 @@ class BurgerBuilder extends Component {
             totalPrice: newPrice,
             ingredients: updatedIngredients
         });
+        this.updatePlaceOrderState(updatedIngredients);
     }
 
     render() {
@@ -74,10 +90,12 @@ class BurgerBuilder extends Component {
             <Aux>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls 
+                    price={this.state.totalPrice} 
                     disabledInfo={disabledInfo} 
                     ingredients={this.state.ingredients}
                     ingredientAdded={this.addIngredientHandler} 
-                    ingredientRemoved={this.removeIngredientHandler} />
+                    ingredientRemoved={this.removeIngredientHandler}  
+                    placeOrderButton={this.state.placeOrder}/>                    
             </Aux>
         );
     }
