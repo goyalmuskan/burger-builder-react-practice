@@ -8,12 +8,20 @@ const burger = (props) => {
     ingredientsArray = ingredientsArray.map(ingreKey => { // ingreKey represents salad, bacon, etc.
 
         // Array with empty spaces equal to number of spaces required by each ingreKey
-        return [...Array(props.ingredients[ingreKey])].map((_, index) => {
+        return [...Array(props.ingredients[ingreKey])].map((_, index) => 
             // console.log(props.ingredients[ingreKey]);
-            return <BurgerIngredient key={ingreKey + index} type={ingreKey} />
-        }); 
-    });
+            <BurgerIngredient key={ingreKey + index} type={ingreKey} />
+        ); 
+    })
+     // flattening the array
+     .reduce((prevArr, currArr) => {
+         return prevArr.concat(currArr);
+     }, []); // array is empty or has JSX elements
     
+    if(ingredientsArray.length === 0) {
+        ingredientsArray = <p> Please start adding Ingredients. </p>
+    }
+    // console.log(ingredientsArray);
     return (
         <div className={classes.Burger}> 
             <BurgerIngredient type="bread-top" />
