@@ -14,7 +14,8 @@ const buildControls = (props) => (
         {Object.keys(props.ingredients).map(control => (
             <BuildControl 
                 added={() => props.ingredientAdded(control)} 
-                remove={() => props.ingredientRemoved(control)}
+                remove={() => props.ingredientRemoved(control)} 
+                disabledInfo={props.disabledInfo[control]} 
                 key={control} 
                 label={control.charAt(0).toUpperCase() + control.slice(1)}></BuildControl>
         ))}
