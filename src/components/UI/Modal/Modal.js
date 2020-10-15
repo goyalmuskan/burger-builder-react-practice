@@ -14,7 +14,7 @@ const modal = (props) => (
             {props.children}
             <OrderSummary ingredients={props.ingredients}/>
         </div>
-        <Backdrop show={props.show} />
+        <Backdrop show={props.show} clicked={props.modalClosed} />
     </Aux>
 );
 
