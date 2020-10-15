@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Aux from '../../hoc/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
+import Modal from '../../components/UI/Modal/Modal';
 
 // Global Constants
 const INGREDIENT_PRICE = {
@@ -28,7 +29,8 @@ class BurgerBuilder extends Component {
             // lettuce : 0
         },
         totalPrice: 10,
-        placeOrder: false
+        placeOrder: false,
+        orderNow: false
     }
 
     updatePlaceOrderState (ingredients) {
@@ -38,8 +40,8 @@ class BurgerBuilder extends Component {
         const sum = Object.keys(ingredients).map( item => {
             return ingredients[item];
         })
-        .reduce((sum, element) => {
-            return sum + element;
+        .reduce((sumTotal, element) => {
+            return sumTotal + element;
         }, 0);
         this.setState({placeOrder: sum > 0});
     }
@@ -77,6 +79,8 @@ class BurgerBuilder extends Component {
         this.updatePlaceOrderState(updatedIngredients);
     }
 
+    purchaseHandler = () => this.setState({orderNow: true});
+
     render() {
         const disabledInfo =  {
             ...this.state.ingredients
@@ -88,13 +92,17 @@ class BurgerBuilder extends Component {
 
         return (
             <Aux>
+                <Modal 
+                    show={this.state.orderNow} 
+                    ingredients={this.state.ingredients}/>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls 
                     price={this.state.totalPrice} 
                     disabledInfo={disabledInfo} 
                     ingredients={this.state.ingredients}
                     ingredientAdded={this.addIngredientHandler} 
-                    ingredientRemoved={this.removeIngredientHandler}  
+                    ingredientRemoved={this.removeIngredientHandler} 
+                    orderPlaced={this.purchaseHandler} 
                     placeOrderButton={this.state.placeOrder}/>                    
             </Aux>
         );
