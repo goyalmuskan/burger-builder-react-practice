@@ -1,5 +1,6 @@
 import React from 'react';
 import Aux from '../../../hoc/Auxiliary';
+import classes from './OrderSummary.module.css';
 
 const orderSummary = (props) => {
     const ingredientSummary =  Object.keys(props.ingredients).map( ingredient => {
@@ -12,7 +13,9 @@ const orderSummary = (props) => {
             <ul>
                 {ingredientSummary}
             </ul>
-            <p> Continue to checkout </p>
+            <p> Continue to checkout </p> 
+            <button onClick={props.cancel} className={classes.Button}> CANCEL </button>
+            <button className={classes.Button}> CONTINUE </button>
         </Aux>
     )
 };
