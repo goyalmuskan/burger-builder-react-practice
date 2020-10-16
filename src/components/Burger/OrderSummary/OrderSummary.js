@@ -1,6 +1,7 @@
 import React from 'react';
 import Aux from '../../../hoc/Auxiliary';
-import classes from './OrderSummary.module.css';
+import Button from '../../UI/Button/Button';
+// import classes from '../../UI/Button/Button.module.css';
 
 const orderSummary = (props) => {
     const ingredientSummary =  Object.keys(props.ingredients).map( ingredient => {
@@ -14,8 +15,8 @@ const orderSummary = (props) => {
                 {ingredientSummary}
             </ul>
             <p> Continue to checkout </p> 
-            <button onClick={props.cancel} className={classes.Button}> CANCEL </button>
-            <button className={classes.Button}> CONTINUE </button>
+            <Button clicked={props.cancel} buttonType="Danger"> CANCEL </Button>
+            <Button buttonType="Success">CONTINUE</Button>
         </Aux>
     )
 };
