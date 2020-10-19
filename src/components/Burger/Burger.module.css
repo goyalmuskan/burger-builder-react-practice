@@ -1,5 +1,5 @@
 .Burger {
-    width: 100%;
+    width: 80%;
     height: 200px;
     margin: auto;
     padding: 20px;
@@ -7,6 +7,7 @@
     font-weight: bold;
     font-size: 1.2rem;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .Burger::-webkit-scrollbar {
