@@ -12,7 +12,7 @@ const modal = (props) => (
             }} 
             className={classes.Modal}>
             {props.children}
-            <OrderSummary ingredients={props.ingredients} cancel={props.modalClosed} purchaseContinue={props.purchaseContinue} />
+            <OrderSummary ingredients={props.ingredients} cancel={props.modalClosed} purchaseContinue={props.purchaseContinue} price={props.price}/>
         </div>
         <Backdrop show={props.show} clicked={props.modalClosed}  />
     </Aux>

@@ -10,7 +10,7 @@
 }
 
 .Burger::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
 }
 
 .Burger::-webkit-scrollbar-track {
