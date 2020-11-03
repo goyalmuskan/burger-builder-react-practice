@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import classes from './Modal.module.css';
-import OrderSummary from '../../Burger/OrderSummary/OrderSummary';
 import Backdrop from '../Backdrop/Backdrop';
 import Aux from '../../../hoc/Auxiliary/Auxiliary';
 
 class Modal extends Component {
 
     shouldComponentUpdate(nextProps, nextState){
-        if(nextProps.show !== this.props.show) {
+        if(nextProps.show !== this.props.show  || nextProps.children !== this.props.children) {
             return true;
         }
         return false;
@@ -26,7 +25,6 @@ class Modal extends Component {
                     }} 
                     className={classes.Modal}>
                     {this.props.children}
-                    <OrderSummary ingredients={this.props.ingredients} cancel={this.props.modalClosed} purchaseContinue={this.props.purchaseContinue} price={this.props.price}/>
                 </div>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed}  />
             </Aux>
