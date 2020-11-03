@@ -3,6 +3,7 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
+import axios from '../../axios-orders';
 
 // Global Constants
 const INGREDIENT_PRICE = {
@@ -86,7 +87,19 @@ class BurgerBuilder extends Component {
     }
     
     purchaseContinueHandler = () => {
-        alert('You continue!');
+        // alert('You continue!');
+        const order = {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice,
+            customer: {
+                name: 'Muskan Goyal',
+                age: '19'
+            },
+            deliveryMethod: 'fastest'
+        }
+        axios.post('/orders.json', order) // firebase
+            .then(response => console.log(response))
+            .catch(error => console.log(error));   
     }
 
     render() {
